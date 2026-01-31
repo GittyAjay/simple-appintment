@@ -58,6 +58,11 @@ Open [http://localhost:5173](http://localhost:5173)
 
 ### 5. Deploy to Firebase Hosting
 
+**Where env is configured when you deploy:** Firebase Hosting serves static files from `dist/`. There is no server process, so env is applied at **build time** only. Set your variables in one of these places before running `npm run build`:
+
+- **Local deploy:** Use a `.env` or `.env.production` file (copy from `.env.example` and fill in values), then run `npm run build` and `firebase deploy`.
+- **CI (e.g. GitHub Actions):** Add the `VITE_*` variables as repository secrets / environment variables in your workflow, then run `npm run build` in that environment so Vite inlines them into the bundle.
+
 ```bash
 # Update .firebaserc with your project ID
 npm run build
