@@ -226,34 +226,73 @@ export function Landing() {
               See SahajDesk in action
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
+              {/* Dashboard — mini stats + list */}
               <div className="rounded-2xl border border-[var(--landing-border)] bg-white p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div className="flex items-center gap-2 mb-4">
                   <IoGridOutline className="w-6 h-6 text-[var(--landing-primary)]" aria-hidden />
                   <span className="font-semibold text-[var(--landing-text)]">Dashboard</span>
                 </div>
                 <p className="text-sm text-[var(--landing-text-muted)] mb-4">Today&apos;s appointments and customer count at a glance.</p>
-                <div className="rounded-xl bg-gray-50 border border-[var(--landing-border)] h-24 flex items-center justify-center text-xs text-[var(--landing-text-muted)]">
-                  Preview
+                <div className="rounded-xl bg-[var(--landing-bg)] border border-[var(--landing-border)] p-3 space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="rounded-lg bg-white border border-[var(--landing-border)] p-2 text-center">
+                      <span className="block text-lg font-bold text-[var(--landing-primary)]" style={{ fontFamily: FONT_HEADING }}>5</span>
+                      <span className="text-[10px] text-[var(--landing-text-muted)]">Today</span>
+                    </div>
+                    <div className="rounded-lg bg-white border border-[var(--landing-border)] p-2 text-center">
+                      <span className="block text-lg font-bold text-[var(--landing-primary)]" style={{ fontFamily: FONT_HEADING }}>42</span>
+                      <span className="text-[10px] text-[var(--landing-text-muted)]">Customers</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    {['9:00 Raj', '10:30 Priya'].map((line, i) => (
+                      <div key={i} className="flex items-center justify-between py-1 px-2 rounded-md bg-white border border-[var(--landing-border)] text-[10px]">
+                        <span className="text-[var(--landing-text)]">{line}</span>
+                        <span className="text-emerald-600 font-medium">Upcoming</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+              {/* Appointments — list by date */}
               <div className="rounded-2xl border border-[var(--landing-border)] bg-white p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div className="flex items-center gap-2 mb-4">
                   <IoCalendarOutline className="w-6 h-6 text-[var(--landing-primary)]" aria-hidden />
                   <span className="font-semibold text-[var(--landing-text)]">Appointments</span>
                 </div>
                 <p className="text-sm text-[var(--landing-text-muted)] mb-4">List by date. Edit, complete, or send reminder.</p>
-                <div className="rounded-xl bg-gray-50 border border-[var(--landing-border)] h-24 flex items-center justify-center text-xs text-[var(--landing-text-muted)]">
-                  Preview
+                <div className="rounded-xl bg-[var(--landing-bg)] border border-[var(--landing-border)] p-3 space-y-2">
+                  <div className="flex gap-1 mb-2">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--landing-primary)] text-white">Today</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] text-[var(--landing-text-muted)]">Upcoming</span>
+                  </div>
+                  {[
+                    { time: '9:00 AM', name: 'Raj Kumar', status: 'Upcoming' },
+                    { time: '10:30 AM', name: 'Priya S.', status: 'Upcoming' },
+                    { time: '2:00 PM', name: 'Amit K.', status: 'Completed' },
+                  ].map((row, i) => (
+                    <div key={i} className="flex items-center justify-between py-1.5 px-2 rounded-md bg-white border border-[var(--landing-border)] text-[10px]">
+                      <span className="text-[var(--landing-text)]">{row.time} — {row.name}</span>
+                      <span className={row.status === 'Upcoming' ? 'text-emerald-600 font-medium' : 'text-[var(--landing-text-muted)]'}>{row.status}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
+              {/* WhatsApp reminder — one-click send */}
               <div className="rounded-2xl border border-[var(--landing-border)] bg-white p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div className="flex items-center gap-2 mb-4">
                   <IoNotificationsOutline className="w-6 h-6 text-[var(--landing-primary)]" aria-hidden />
                   <span className="font-semibold text-[var(--landing-text)]">WhatsApp reminder</span>
                 </div>
                 <p className="text-sm text-[var(--landing-text-muted)] mb-4">One click sends date and time to the customer.</p>
-                <div className="rounded-xl bg-gray-50 border border-[var(--landing-border)] h-24 flex items-center justify-center text-xs text-[var(--landing-text-muted)]">
-                  Preview
+                <div className="rounded-xl bg-[var(--landing-bg)] border border-[var(--landing-border)] p-3 space-y-2">
+                  <div className="rounded-lg bg-white border border-[var(--landing-border)] p-2 text-[10px] text-[var(--landing-text-muted)]">
+                    Your appointment: <strong className="text-[var(--landing-text)]">Jan 15, 10:30 AM</strong>
+                  </div>
+                  <button type="button" className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#25D366] text-white text-[10px] font-semibold border-0 cursor-default">
+                    <IoChatbubbleOutline className="w-3.5 h-3.5" aria-hidden />
+                    Send WhatsApp reminder
+                  </button>
                 </div>
               </div>
             </div>
