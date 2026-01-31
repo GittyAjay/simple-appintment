@@ -20,6 +20,8 @@ import { useToast } from '../contexts/ToastContext'
 
 const FONT_HEADING = 'var(--font-heading)'
 const FONT_BODY = 'var(--font-body)'
+const CONTACT_PHONE = '6392363003'
+const WHATSAPP_LINK = `https://wa.me/${CONTACT_PHONE}`
 
 function DemoModal({ open, onClose }) {
   const [name, setName] = useState('')
@@ -45,7 +47,7 @@ function DemoModal({ open, onClose }) {
   return (
     <Modal open={open} onClose={onClose} title="Book a Free Demo">
       <p className="text-[var(--landing-text-muted)] text-sm mb-4" style={{ fontFamily: FONT_BODY }}>
-        Leave your number; we'll call you within 24 hours.
+        Leave your number; we'll call you within 24 hours. Or WhatsApp us: <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-[var(--landing-primary)] font-medium no-underline hover:underline">{CONTACT_PHONE}</a>
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input label="Name" placeholder="Dr. Sharma" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -364,7 +366,7 @@ export function Landing() {
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="font-bold text-[var(--landing-primary)]" style={{ fontFamily: FONT_HEADING }}>SahajDesk</span>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--landing-text-muted)]">
-              <span>Contact: WhatsApp — (your number)</span>
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--landing-primary)] no-underline">Contact: WhatsApp — {CONTACT_PHONE}</a>
               <Link to="/login" className="hover:text-[var(--landing-primary)] no-underline">Log in</Link>
               <a href="#" className="hover:text-[var(--landing-primary)] no-underline">Privacy</a>
               <a href="#" className="hover:text-[var(--landing-primary)] no-underline">Terms</a>
